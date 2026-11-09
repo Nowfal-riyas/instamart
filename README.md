@@ -839,6 +839,12 @@ instamart/
 │
 ├── data/
 │   ├── policies/
+│   │   ├── delivery_policy.txt
+│   │   ├── escalation_policy.txt
+│   │   ├── payment_policy.txt
+│   │   ├── privacy_policy.txt
+│   │   └── refund_policy.txt
+│   │
 │   ├── raw/
 │   │   ├── agent_scenarios.csv
 │   │   ├── customers.csv
