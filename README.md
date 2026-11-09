@@ -12,7 +12,6 @@ Part D — Policy RAG Assistant & Refund Agent: Developing a TF-IDF-based retrie
 
 All model interactions use the supplied mock_llm.py. No real external API calls or API keys are required.
 
-Reproduce
 1. Clone the repository
 bash
 git clone https://github.com/Nowfal-riyas/instamart.git
@@ -26,7 +25,7 @@ python -m venv venv
 Activate it on Windows PowerShell:
 
 powershell
-.\venv\Scripts\Activate.ps1
+.\venv\Scripts\activate
 
 3. Install dependencies
 bash
@@ -43,12 +42,11 @@ The supplied input files and generated datasets are used throughout the project.
 
 Run the scripts in dependency order:
 
-bash
-python src/part_a.py
-python src/validate_data.py
-python src/part_b.py
-python src/part_c.py
-python src/part_d.py
+python generate.py
+python audit.py
+python model.py
+python support_ticket.py
+python policy_assistant.py
 
 
 Adjust script paths to match the actual filenames in the repository.
@@ -836,41 +834,46 @@ Integrate real authentication, audit trails and human approval workflows before 
 Add transactional safeguards and idempotency to refund processing.
 Repository Structure
 text
+
 instamart/
 │
 ├── data/
-│   ├── raw/
-│   ├── clean/
 │   ├── policies/
+│   ├── raw/
+│   │   ├── agent_scenarios.csv
+│   │   ├── customers.csv
+│   │   ├── orders.csv
+│   │   ├── policy_eval.csv
+│   │   ├── products.csv
+│   │   └── tickets.csv
+│   │
 │   └── instamart.db
+│
+├── outputs/
+│   ├── agent_runs.jsonl
+│   ├── customer_segments.csv
+│   ├── lapse_model.joblib
+│   ├── refund_ledger.jsonl
+│   ├── retention_list.csv
+│   ├── triage_budget_demo.csv
+│   └── triage_results.csv
 │
 ├── sql/
 │   └── queries.sql
 │
-├── src/
-│   ├── part_a.py
-│   ├── validate_data.py
-│   ├── part_b.py
-│   ├── part_c.py
-│   └── part_d.py
-│
-├── outputs/
-│   ├── customer_segments.csv
-│   ├── lapse_model.joblib
-│   ├── retention_list.csv
-│   ├── triage_budget_demo.csv
-│   ├── triage_results.csv
-│   ├── agent_runs.jsonl
-│   └── refund_ledger.jsonl
-│
 ├── state/
-│   └── checkpoints
+│   └── checkpoints/
 │
-├── generate_data.py
-├── mock_llm.py
-├── requirements.txt
+├── venv/
+│
 ├── .gitignore
-└── README.md
+├── audit.py
+├── generate.py
+├── mock_llm.py
+├── model.py
+├── support_ticket.py
+└── policy_assistant.py
+
 
 
 The filenames above are illustrative; keep this tree consistent with the actual repository.
